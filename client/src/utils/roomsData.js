@@ -1,0 +1,22 @@
+export const roomsData = [
+    { name: "L-1", capacity: 99, department: "EE" },
+    { name: "L-2", capacity: 99, department: "EE" },
+    { name: "L-3", capacity: 99, department: "EE" },
+    { name: "L-4", capacity: 99, department: "EE" },
+    { name: "L-5", capacity: 99, department: "EE" },
+    { name: "L-6", capacity: 99, department: "EE" },
+    { name: "L-7", capacity: 99, department: "EE" },
+    { name: "L-8", capacity: 99, department: "EE" },
+    { name: "L-9", capacity: 99, department: "ECE" },
+    { name: "L-10", capacity: 99, department: "EE" },
+    { name: "L-11", capacity: 99, department: "EE" },
+    { name: "L-12", capacity: 99, department: "EE" },
+    { name: "L-13", capacity: 99, department: "EE" },
+    { name: "L-14", capacity: 99, department: "EE" },
+    { name: "L-15", capacity: 99, department: "EE" },
+    { name: "L-16", capacity: 99, department: "EE" },
+    { name: "L-17", capacity: 99, department: "EE" },
+    { name: "L-18", capacity: 99, department: "EE" },
+    { name: "L-19", capacity: 99, department: "EE" },
+    { name: "L-20", capacity: 99, department: "CSE" }
+];
