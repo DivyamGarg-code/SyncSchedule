@@ -30,6 +30,7 @@ function RoomTimeDetailsPopUp() {
 export default RoomTimeDetailsPopUp
 
 
+// Here you need to apply filter of department to get department wise rooms data
 const TimeSlots = ({departments,rooms}) => {
    
     const [filteredRooms, setFilteredRooms] = useState(rooms); // These are the rooms filtered department wise
@@ -72,7 +73,7 @@ const TimeSlots = ({departments,rooms}) => {
     // ------------------------------------------------------------------------------------------
     const setAvailableItems = () => {
         const data = classes.reduce((acc, classItem) => {
-            filteredWeekdays.forEach((weekday) => {
+            weekDays.forEach((weekday) => {
                 acc[weekday] = acc[weekday] || {};
                 if (classItem.day === weekday && classItem.roomName === selectedRoom) {
                     acc[weekday][selectedRoom] = acc[weekday][selectedRoom] || [];
@@ -83,7 +84,7 @@ const TimeSlots = ({departments,rooms}) => {
         }, {});
         console.log("Before filteration", data);
         if(selectedRoom.length!=0){
-            filteredWeekdays.forEach((weekday) => {
+            weekDays.forEach((weekday) => {
                 if (data[weekday][selectedRoom]) {
                     data[weekday][selectedRoom] = getAvailableTimeSlots(timeSlots, data[weekday][selectedRoom]);
                 } else {
@@ -135,7 +136,7 @@ const TimeSlots = ({departments,rooms}) => {
             <div className='flex flex-row gap-2 items-center flex-wrap'>
                 <SingleSelectDropdown options={filteredRooms} selectedOption={selectedRoom} setSelectedOption={setSelectedRoom} placeholder={"Select a Room Number"} />
                 <SingleSelectDropdown options={weekDays} selectedOption={selectedWeekday} setSelectedOption={setSelectedWeekday} placeholder={"Select day"} />
-                <SingleSelectDropdown options={departments} selectedOption={selectedDepartment} setSelectedOption={setSelectedDepartment} placeholder={"Select Department"} />
+                {/* <SingleSelectDropdown options={departments} selectedOption={selectedDepartment} setSelectedOption={setSelectedDepartment} placeholder={"Select Department"} /> */}
             </div>
             <div className='h-[2px] bg-gray-300 w-full'></div>
             {filteredData && filteredWeekdays.map((weekday) => {

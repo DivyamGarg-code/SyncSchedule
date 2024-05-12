@@ -10,11 +10,15 @@ const timetableFilterSlice = createSlice({
         year: [],
         semester: [],
         courseType: [],
-        courseName: []
+        courseName: [],
+        electiveType:[]
     },
     reducers: {
         setCourseCode: (state, action) => {
             state.courseCode = action.payload;
+        },
+        setElectiveType: (state, action) => {
+            state.electiveType = action.payload;
         },
         setTeacherName: (state, action) => {
             state.teacherName = action.payload;
@@ -39,6 +43,7 @@ const timetableFilterSlice = createSlice({
         },
         clearFilters:(state)=>{
             state.courseCode = [];
+            state.electiveType = [];
             state.teacherName = [];
             state.department = [];
             state.batch = [];
@@ -50,5 +55,5 @@ const timetableFilterSlice = createSlice({
     }
 });
 
-export const { setCourseCode, setBatch, setCourseName, setCourseType, setDepartment, setSemester, setTeacherName, setYear,clearFilters } = timetableFilterSlice.actions;
+export const { setCourseCode, setBatch, setCourseName,setElectiveType, setCourseType, setDepartment, setSemester, setTeacherName, setYear,clearFilters } = timetableFilterSlice.actions;
 export default timetableFilterSlice.reducer;

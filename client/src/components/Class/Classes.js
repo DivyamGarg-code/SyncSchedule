@@ -22,12 +22,12 @@ function Classes() {
       {showClassPopUp && <PopUpWrapper isConfirmationPopUp={true} component={<ClassCreationPopUp openPopUp={setClassPopUp} />} openPopUp={setClassPopUp} />}
       <div className='flex flex-col gap-2'>
         <span className='font-bold text-xl'>Classes</span>
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, soluta?</span>
+        <span>Details of all the classes of Punjab Engineering College</span>
       </div>
       <div className='flex flex-row gap-4 justify-between items-center'>
         <input className="border-2 p-1" type="text" placeholder={`Search Classes `} value={searchTerm} onChange={handleSearchChange} />
         <div className='flex flex-row gap-2 items-center'>
-          <div className='bg-green-600 p-2 rounded-md text-white cursor-pointer w-fit text-[14px] font-bold hover:bg-green-700' >Upload Excel</div>
+          <div className='bg-green-600 p-2 rounded-md text-white cursor-pointer w-fit text-[14px] font-bold hover:bg-green-700' >Update Excel</div>
           <div className='bg-purple-600 p-2 rounded-md text-white cursor-pointer w-fit text-[14px] font-bold hover:bg-purple-700' onClick={()=>setClassPopUp(true)}>Add Class</div>
         </div>
       </div>

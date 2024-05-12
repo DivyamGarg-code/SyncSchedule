@@ -7,6 +7,7 @@ export const courseCodes = ["EL2001", "EL2002", "CS3004", "ECE3004", "PROD4003"]
 export const teacherNames = ["Balwinder Singh", "Amandeep Kaur", "Dhiraj Bharat", "Raman Singh", "Kriti Jain"];
 export const departments = ["CSE", "EE", "ECE", "MECH", "AERO", "META", "CIVIL", "PROD"];
 export const batches = ["G1", "G2", "G3", "G4", "G5", "EE1", "EE5"];
+export const electiveTypes=["DEC1","DEC2","DEC3","DEC4","OE1","OE2","OE3"];
 export const years = ["1st", "2nd", "3rd", "4th"];
 export const semesters = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
 export const courseTypes = ["Lecture", "Tutorial", "Practical"];
@@ -45,6 +46,6 @@ export const getAvailableTimeSlots = (allSlots, bookedSlots) => {
 }
 
 export const concatinatedString = (data) => {
-  const concatStr=Object.values(data).join('');
+  const concatStr=Object.values(data).join(' ');
   return concatStr.toLowerCase();
  }

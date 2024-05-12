@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react'
 import { classes } from '../../utils/classesData';
-import { batches, courseCodes, courseTypes, departments, isIntervalWithin, semesters, teacherNames, timeSlots, weekDays, years } from '../../utils/constants';
+import { batches, courseCodes, courseTypes, departments, electiveTypes, isIntervalWithin, semesters, teacherNames, timeSlots, weekDays, years } from '../../utils/constants';
 import ClassDetailsPopUp from './ClassDetailsPopUp';
 import ClassInfoCard from './ClassInfoCard';
 import MultiSelectDropdown from '../common/MultiSelectDropdown';
-import { clearFilters, setBatch, setCourseCode, setCourseType, setDepartment, setSemester, setTeacherName, setYear } from '../../utils/slices/timetableFilterSlice';
+import { clearFilters, setBatch, setCourseCode, setCourseType, setDepartment, setElectiveType, setSemester, setTeacherName, setYear } from '../../utils/slices/timetableFilterSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import PopUpWrapper from '../common/PopUpWrapper';
 
@@ -71,6 +71,7 @@ function WeekdayHourlySchedule() {
         <MultiSelectDropdown entries={years} objKey={"year"} func={setYear} name={"Year"} />
         <MultiSelectDropdown entries={semesters} objKey={"semester"} func={setSemester} name={"Semester"} />
         <MultiSelectDropdown entries={courseTypes} objKey={"courseType"} func={setCourseType} name={"Course Type"} />
+        <MultiSelectDropdown entries={electiveTypes} objKey={"electiveType"} func={setElectiveType} name={"Elective Type"} />
         <button onClick={clearAllFilters} className='p-2 rounded-md font-semibold bg-purple-300 hover:bg-purple-400'>Clear Filters</button>
         <button onClick={handlePrint} className='p-2 rounded-md font-semibold bg-purple-300 hover:bg-purple-400'>Print</button>
       </div>
