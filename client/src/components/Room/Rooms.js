@@ -9,6 +9,7 @@ function Rooms() {
   const [showRoomPopUp, setRoomPopUp] = useState(false);
   const [filteredData, setFilteredData] = useState(roomsData);
   const [searchTerm, setSearchTerm] = useState("");
+
   console.log(filteredData);
   const handleSearchChange = (e) => {
     const { value } = e.target;

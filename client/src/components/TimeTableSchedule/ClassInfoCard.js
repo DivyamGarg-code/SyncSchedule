@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { togglePopUp } from '../../utils/slices/popupSlice';
+import { concatenateFirstLetters } from '../../utils/constants';
 // function ClassInfoCard({ data, setFullClassDetails }) {
 //     const { courseCode, roomName, courseType } = data[0];
 //     const showClassDetails = () => {
@@ -24,7 +25,7 @@ import { togglePopUp } from '../../utils/slices/popupSlice';
 // }
 
 function ClassInfoCard({ data, setFullClassDetails,setClassInfoPopUp }) {
-    const { courseCode, roomName, courseType } = data[0];
+    const { courseCode, roomName, courseType,teacherName } = data[0];
     const dispatch = useDispatch();
     console.log("Class Info Card ", data);
     const showClassDetails = (data) => {
@@ -37,9 +38,9 @@ function ClassInfoCard({ data, setFullClassDetails,setClassInfoPopUp }) {
         <div className='flex flex-col gap-2 items-center'>
             <div onClick={() => { showClassDetails([data[0]]);setClassInfoPopUp(true) }} className={`flex flex-col gap-2 items-center rounded-md p-2 cursor-pointer ${courseColor}`} title={courseType}>
                 <div className='text-nowrap'>{courseCode + " (" + courseType.charAt(0) + ")"}</div>
-                <div className='flex flex-row justify-between items-center w-full text-xs font-semibold'>
+                <div className='flex flex-row justify-between items-center w-full text-xs font-semibold gap-3'>
                     <div>{roomName}</div>
-                    <div>BS</div>
+                    <div>{concatenateFirstLetters(teacherName)}</div>
                 </div>
             </div>
             {data.length > 1 ? <div className='text-[10px] text-purple-800 font-bold cursor-pointer' onClick={() => { showClassDetails(data);setClassInfoPopUp(true)  }}>Show More</div> : ""}

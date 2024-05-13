@@ -1,22 +1,34 @@
-import React, { useState } from 'react'
-import { classes } from '../../utils/classesData'
+import React, { useEffect, useState } from 'react'
+// import { classes } from '../../utils/classesData'
 import { concatinatedString } from '../../utils/constants';
 import PopUpWrapper from '../common/PopUpWrapper';
 import ClassCreationPopUp from './ClassCreationPopUp';
 
 function Classes() {
   const [showClassPopUp,setClassPopUp]=useState(false);
-  const [filteredData, setFilteredData] = useState(classes);
+  const [filteredData, setFilteredData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   console.log(filteredData);
+  const [classesData,setClassesData]=useState(null);
+  const getClassesData = async () => {
+    const data = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=d_kGp6mVqAjf6iwy_QC1NRA4HiwkCBzEKnrJc_aiU2Afx4942PgK1UkE7NL9KngA-9otDa3IDjD9Zlv4UGcJwdhr5ef_Pnytm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKmGVC4Byr33yFeXZ5LPB9M7zQ99r0bsp6H2fIDg6Lo_AI92iVmRSVSKoivfa9svyINqiP68x8AQ80cai_mYmaIiPEj2CuEZfw&lib=MIJX2KtKUwnSC8R4MLDUzqsa0aySdfDvo");
+    const json = await data.json();
+    console.log("Classes's Data", json);
+    setClassesData(json.data);
+    setFilteredData(json.data);
+  }
+
   const handleSearchChange = (e) => {
     const { value } = e.target;
     setSearchTerm(value);
-    setFilteredData(classes.filter((data) => {
+    setFilteredData(classesData.filter((data) => {
       const concatStr = concatinatedString(data);
       return concatStr.includes(value.trim().toLowerCase());
     }));
   }
+  useEffect(()=>{
+    getClassesData();
+  },[]);
   return (
     <div className='flex flex-col gap-5'>
       {showClassPopUp && <PopUpWrapper isConfirmationPopUp={true} component={<ClassCreationPopUp openPopUp={setClassPopUp} />} openPopUp={setClassPopUp} />}
@@ -27,12 +39,12 @@ function Classes() {
       <div className='flex flex-row gap-4 justify-between items-center'>
         <input className="border-2 p-1" type="text" placeholder={`Search Classes `} value={searchTerm} onChange={handleSearchChange} />
         <div className='flex flex-row gap-2 items-center'>
-          <div className='bg-green-600 p-2 rounded-md text-white cursor-pointer w-fit text-[14px] font-bold hover:bg-green-700' >Update Excel</div>
+          <a className='bg-green-600 p-2 rounded-md text-white cursor-pointer w-fit text-[14px] font-bold hover:bg-green-700' href='https://docs.google.com/spreadsheets/d/144VqCvBpHWGzOWtBQgFNartPzxuj01U0-J59SNgv37Y/edit#gid=0' target='_blank'>Update Excel</a>
           <div className='bg-purple-600 p-2 rounded-md text-white cursor-pointer w-fit text-[14px] font-bold hover:bg-purple-700' onClick={()=>setClassPopUp(true)}>Add Class</div>
         </div>
       </div>
       <div className='w-full border-2 border-gray-100'></div>
-      {filteredData.length === 0 ? <div className='italic px-4 py-2 text-center'>No Search Results</div> :
+      {filteredData===null?<div className='text-center'>Loading...</div>:filteredData.length === 0 ? <div className='italic px-4 py-2 text-center'>No Search Results</div> :
         <div className="overflow-x-auto h-[400px] overflow-y-auto">
           <table className="table-auto w-full">
             <thead className="sticky top-0 bg-white">

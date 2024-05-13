@@ -15,7 +15,16 @@ import {Provider} from 'react-redux'
 import appStore from './utils/appStore';
 import Teachers from './components/Teacher/Teachers';
 
+
+// app.all('*', function(req, res, next) {
+//   const origin = cors.origin.includes(req.header('origin').toLowerCase()) ? req.headers.origin : cors.default;
+//   res.header("Access-Control-Allow-Origin", origin);
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+
 function App() {
+  
   const appRouter=createBrowserRouter([
     {
       path: '/',

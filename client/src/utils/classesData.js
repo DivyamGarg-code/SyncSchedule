@@ -42,7 +42,7 @@ export const classes = [
         "roomName": "L-5",
     },
     {
-        "courseCode": "EL2006",
+        "courseCode": "EL2003",
         "courseName": "Renewable",
         "courseType": "Lecture",
         "year": "4th",
@@ -56,18 +56,32 @@ export const classes = [
         "roomName": "L-5",
     },
     {
-        "courseCode": "EL2003",
-        "courseName": "Power System",
+        "courseCode": "EL2004",
+        "courseName": "Electrical Machines",
         "courseType": "Practical",
-        "year": "4th",
+        "year": "3rd",
         "semester": "8th",
         "department": "EE",
         "electiveType": "DEC1", // DEC1/OE2
         "batch": "G1",
-        "teacherName": "Balwinder Singh",
+        "teacherName": "Dhiraj Bharat",
         "day": "Friday",
-        "timeSlot": "8-15",
-        "roomName": "L-4",
+        "timeSlot": "8-10",
+        "roomName": "Machines Lab",
+    },
+    {
+        "courseCode": "EL2004",
+        "courseName": "Electrical Machines",
+        "courseType": "Practical",
+        "year": "3rd",
+        "semester": "8th",
+        "department": "EE",
+        "electiveType": "DEC1", // DEC1/OE2
+        "batch": "G1",
+        "teacherName": "Dhiraj Bharat",
+        "day": "Friday",
+        "timeSlot": "13-15",
+        "roomName": "Machines Lab",
     },
 ]
 

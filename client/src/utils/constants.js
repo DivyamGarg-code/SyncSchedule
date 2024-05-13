@@ -3,7 +3,7 @@ export const timeSlots = ["8-9", "9-10", "10-11", "11-12", "12-13", "13-14", "14
 export const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 export const rooms = ["L-1", "L-2", "L-3", "L-4", "L-5", "L-6", "L-7", "L-8", "L-9", "L-10", "L-11", "L-12", "L-13", "L-14", "L-15", "L-16", "L-17", "L-18", "L-19", "L-20"]
 
-export const courseCodes = ["EL2001", "EL2002", "CS3004", "ECE3004", "PROD4003"];
+export const courseCodes = ["EL2001", "EL2002","EL2003","EL2004", "CS3004", "ECE3004", "PROD4003"];
 export const teacherNames = ["Balwinder Singh", "Amandeep Kaur", "Dhiraj Bharat", "Raman Singh", "Kriti Jain"];
 export const departments = ["CSE", "EE", "ECE", "MECH", "AERO", "META", "CIVIL", "PROD"];
 export const batches = ["G1", "G2", "G3", "G4", "G5", "EE1", "EE5"];
@@ -49,3 +49,13 @@ export const concatinatedString = (data) => {
   const concatStr=Object.values(data).join(' ');
   return concatStr.toLowerCase();
  }
+
+ export const concatenateFirstLetters=(inputString)=>{
+  // Split the input string into an array of words
+  const words = inputString.split(' ');
+
+  // Extract the first letter of each word, convert to uppercase, and join with a space
+  const concatenatedString = words.map(word => word.charAt(0).toUpperCase()).join('');
+
+  return concatenatedString;
+}

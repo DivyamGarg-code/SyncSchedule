@@ -34,7 +34,7 @@ function CourseCard({ classData }) {
     return (
         <div className="max-w-xs rounded overflow-hidden shadow-lg flex flex-col justify-start gap-2 bg-white" onClick={(event) => { event.stopPropagation() }}>
             <div className="px-6 py-4 flex flex-col justify-start gap-1">
-                <div className="font-bold text-xl text-nowrap">{courseName}</div>
+                <div className="font-bold text-xl">{courseName}</div>
                 <p className="text-gray-700 text-base">{courseCode}</p>
                 <p className="text-gray-700 text-base">{department} - {batch}</p>
                 <p className="text-gray-700 text-base text-nowrap">Teacher: {teacherName}</p>
