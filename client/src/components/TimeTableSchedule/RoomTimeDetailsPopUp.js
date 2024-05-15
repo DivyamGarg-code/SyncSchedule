@@ -19,8 +19,8 @@ function RoomTimeDetailsPopUp() {
     return (
         <div className='max-w-[500px] max-h-[450px] overflow-y-auto w-full p-4 border-2 flex flex-col gap-4 rounded-lg bg-white' onClick={(event) => { event.stopPropagation() }}>
             <div className='flex flex-row items-center gap-3 bg-purple-300 p-2 rounded-md font-semibold w-fit'>
-                <div className={activeTab === "roomNo" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer' : 'cursor-pointer'} onClick={() => { toggleTab("roomNo") }}>Available Rooms</div>
-                <div className={activeTab !== "roomNo" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer' : 'cursor-pointer'} onClick={() => { toggleTab("timeSlot") }}>Available Time Slots</div>
+                <div className={activeTab === "roomNo" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer text-center' : 'cursor-pointer text-center'} onClick={() => { toggleTab("roomNo") }}>Available Rooms</div>
+                <div className={activeTab !== "roomNo" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer text-center' : 'cursor-pointer text-center'} onClick={() => { toggleTab("timeSlot") }}>Available Time Slots</div>
             </div>
             {activeTab === "roomNo" ? <RoomNumbers departments={departments}/> : <TimeSlots departments={departments} rooms={rooms}/>}
         </div>

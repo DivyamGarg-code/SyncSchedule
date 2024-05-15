@@ -68,6 +68,8 @@ import { batches, courseCodes, courseTypes, departments, electiveTypes, rooms, s
 
 
 function ClassCreationPopUp({ openPopUp }) {
+    const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(null);
     const [formData, setFormData] = useState({
         courseCode: "",
         courseName: "",
@@ -101,7 +103,11 @@ function ClassCreationPopUp({ openPopUp }) {
     //     })
     // }, [selectedDepartment]);
     // console.log("selectedDepartment", selectedDepartment);
+    useEffect(() => {
+        setErrorMsg(null);
+    }, [selectedBatch, selectedCourseCode, selectedCourseType, selectedDay, selectedDepartment, selectedElectiveType, selectedRoomNumber, selectedSemester, selectedTeacher, selectedTimeSlot, selectedYear]);
     const handleChange = (e) => {
+        setErrorMsg(null);
         const { name, value } = e.target;
         if (name === "courseName") {
             setCourseName(value);
@@ -112,27 +118,74 @@ function ClassCreationPopUp({ openPopUp }) {
         // });
     };
 
+    async function postData(url = "", options = {}) {
+        try {
+            const response = await fetch(url, options);
+            const data = await response.text();
+            return data;
+        } catch (error) {
+            console.error(error);
+            throw new Error("An error occurred while making the POST request.");
+        }
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         // Here you can handle form submission, such as sending data to a server or performing other actions
-        const data = {
-            courseCode: selectedCourseCode,
-            courseName: courseName,
-            courseType: selectedCourseType,
-            year: selectedYear,
-            semester: selectedSemester,
-            department: selectedDepartment,
-            electiveType: selectedElectiveType,
-            batch: selectedBatch,
-            teacherName: selectedTeacher,
-            day: selectedDay,
-            timeSlot: selectedTimeSlot,
-            roomName: selectedRoomNumber,
+        if (
+            selectedCourseCode.length === 0 ||
+            courseName.length === 0 ||
+            selectedCourseType.length === 0 ||
+            selectedYear.length === 0 ||
+            selectedSemester.length === 0 ||
+            selectedDepartment.length === 0 ||
+            selectedElectiveType.length === 0 ||
+            selectedBatch.length === 0 ||
+            selectedTeacher.length === 0 ||
+            selectedDay.length === 0 ||
+            selectedTimeSlot.length === 0 ||
+            selectedRoomNumber.length === 0
+        ) {
+            setErrorMsg("Please fill all the details");
+            return;
+        } else {
+
+            const data = {
+                courseCode: selectedCourseCode,
+                courseName: courseName,
+                courseType: selectedCourseType,
+                year: selectedYear,
+                semester: selectedSemester,
+                department: selectedDepartment,
+                electiveType: selectedElectiveType,
+                batch: selectedBatch,
+                teacherName: selectedTeacher,
+                day: selectedDay,
+                timeSlot: selectedTimeSlot,
+                roomName: selectedRoomNumber,
+            }
+            console.log("Handle Submit data", data);
+            // Reset form fields after submission
+            // --------------------------------------------------------------------------
+            setLoading(true);
+            const requestOptions = {
+                method: "POST",
+            };
+            (async () => {
+                try {
+                    const url =
+                        `https://script.google.com/macros/s/AKfycbyV6mKHkSQRHdzGhzNv4P1Zz7jO45i2X-mXjujaEzHmwWKLHb_9oqffYs8qjD2njyIm/exec?courseCode=${selectedCourseCode}&courseName=${courseName}&courseType=${selectedCourseType}&year=${selectedYear}&semester=${selectedSemester}&department=${selectedDepartment}&electiveType=${selectedElectiveType}&batch=${selectedBatch}&teacherName=${selectedTeacher}&day=${selectedDay}&timeSlot=${selectedTimeSlot}&roomName=${selectedRoomNumber}`;
+                    const result = await postData(url, requestOptions);
+                    alert("Form Submitted Successfully");
+                    console.log(result);
+                } catch (error) {
+                    alert(error.message);
+                }
+                openPopUp(false);
+            })();
         }
-        console.log("Handle Submit data", data);
-        // Reset form fields after submission
-        alert("Form Submitted Successfully");
-        openPopUp(false);
+        // --------------------------------------------------------------------------
+        // alert("Form Submitted Successfully");
+        // openPopUp(false);
         // setFormData({
         //     name: "",
         //     designation: "",
@@ -184,7 +237,7 @@ function ClassCreationPopUp({ openPopUp }) {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                       
+
                         <div className='flex flex-col gap-2'>
                             <label htmlFor="batch" className="font-semibold">Batch:</label>
                             <SingleSelectDropdown options={batches} placeholder={"Select Batch"} selectedOption={selectedBatch} setSelectedOption={setSelectedBatch} />
@@ -208,8 +261,9 @@ function ClassCreationPopUp({ openPopUp }) {
                     </div>
                 </div>
                 {/* ------------------------------------------------------------------------------- */}
-
-                <button type="submit" className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700">Submit</button>
+                {errorMsg ? <div className='text-red-700 text-[14px]'>{errorMsg}</div> : null}
+                {loading ? <div className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 text-center">Loading...</div> :
+                    <button type="submit" className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700">Submit</button>}
             </form>
         </div>
     );

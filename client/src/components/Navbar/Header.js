@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../images/logo.png'
+import { NavLink } from 'react-router-dom';
 
 function Header() {
   const urlParam=window.location.pathname.split("/")[1].length!==0?window.location.pathname.split("/")[1]:"Home";

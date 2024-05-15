@@ -13,8 +13,8 @@ function TimeTable() {
   return (
     <div className='flex flex-col items-center gap-5'>
       <div className='flex flex-row items-center gap-3 bg-purple-300 p-2 rounded-md font-semibold'>
-        <div className={activeTab === "weekdayHourlySchedule" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer' : 'cursor-pointer'} onClick={() => { toggleTab("weekdayHourlySchedule") }}>Weekday Hourly Schedule</div>
-        <div className={activeTab !== "weekdayHourlySchedule" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer' : 'cursor-pointer'} onClick={() => { toggleTab("roomTimeAvailability") }}>Room Time Availability</div>
+        <div className={activeTab === "weekdayHourlySchedule" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer text-center' : 'cursor-pointer text-center'} onClick={() => { toggleTab("weekdayHourlySchedule") }}>Weekday Hourly Schedule</div>
+        <div className={activeTab !== "weekdayHourlySchedule" ? 'bg-purple-600 p-2 rounded-md text-white cursor-pointer text-center' : 'cursor-pointer text-center'} onClick={() => { toggleTab("roomTimeAvailability") }}>Room Time Availability</div>
       </div>
       {activeTab === "weekdayHourlySchedule" ? <WeekdayHourlySchedule /> : <RoomTimeAvailability />}
     </div>
